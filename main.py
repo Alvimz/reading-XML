@@ -4,7 +4,7 @@ import requests
 class Logic:
     def __init__(self) -> None:
         self.search_tag= [] #lista para armazenar as tags diretamente do xml
-        self.result_links = [] #lista com os códigos válidos!
+        self.result_links = [] #lista com os links válidos!
         self.error_links = [] #lista com os links errôneos
         
     def get_site_xml(self): #pega linha por linha do xml e armazena na lista 'search_tag'
@@ -17,14 +17,9 @@ class Logic:
         
         return self.search_tag #retornando em lista com os valores
     
-    # def requesition_links(self): #fazer requisição dos links
-    #     self.result_code = []
-    #     for links in self.search_tag:
-    #         result = requests.get(links)
-    #         self.result_code.append(result.status_code)
-    #     return self.result_code
+
     
-    def check_url(self): #testa as urls
+    def check_url(self): #testa as urls e as separa se funfa ou não!
         
         for urls in self.search_tag:
                       
