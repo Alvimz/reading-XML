@@ -16,16 +16,37 @@ class Logic:
         
         return self.search_tag #retornando em lista com os valores
     
-    def requesition_links(self):
+    def requesition_links(self): #fazer requisição dos links
         self.result_code = []
         for links in self.search_tag:
             result = requests.get(links)
             self.result_code.append(result.status_code)
         return self.result_code
+    
+    def check_url(self): #testa as urls
+        checked_urls = []
+        for urls in self.search_tag:
+                      
+            try:
+                maybe_url = requests.get(urls)
+                if maybe_url.status_code == 200:
+                    checked_urls.append(urls)
+                
+                
+            except:
+                print(f'Url: {urls} < inválida!')
+        return checked_urls, 'Urls verificadas e adicionadas!'
+        
+            
+            
         
         
+        
+    
+    
 
 a = Logic()
 print(a.get_site_xml())
-print(a.requesition_links())
+#print(a.requesition_links())
+print(a.check_url())
 
