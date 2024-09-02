@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-from openpyxl import load_workbook
+from openpyxl import load_workbook,Workbook
 
 class Logic:
     def __init__(self) -> None:
@@ -36,13 +36,18 @@ class Logic:
         return self.result_links, self.error_links
         
     def add_link_xlsx(self):
-        workbook = load_workbook('links.xlsx')
-        workbook_active = workbook.active
+        try:
+            
+            wb = load_workbook('links.xlsx')
+            workbook_active = wb.active
+        except:
+            wb = Workbook()
+            workbook_active= wb.active
         for link in self.result_links:
             workbook_active.append([link,'Link válido!'])
         for link in self.error_links:
             workbook_active.append([link,'Link inválido!'])
-        workbook.save('links.xlsx')
+        wb.save('links.xlsx')
         
             
             
