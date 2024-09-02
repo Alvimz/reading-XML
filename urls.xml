@@ -1,0 +1,6 @@
+<sites>
+    <site>https://www.cnbc.com</site>
+    <site>https://www.google.com</site>
+    <site>https://web.whatsapp.com</site>
+    <site>https://www.incorrectsite1.com</site> <!-- URL incorreta -->
+</sites>

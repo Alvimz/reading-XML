@@ -3,8 +3,9 @@ import requests
 
 class Logic:
     def __init__(self) -> None:
-        self.search_tag= [] #lista para armazenar as tags
-        self.result_code = []
+        self.search_tag= [] #lista para armazenar as tags diretamente do xml
+        self.result_links = [] #lista com os códigos válidos!
+        self.error_links = [] #lista com os links errôneos
         
     def get_site_xml(self): #pega linha por linha do xml e armazena na lista 'search_tag'
         with open("urls.xml", "r") as file:
@@ -16,26 +17,27 @@ class Logic:
         
         return self.search_tag #retornando em lista com os valores
     
-    def requesition_links(self): #fazer requisição dos links
-        self.result_code = []
-        for links in self.search_tag:
-            result = requests.get(links)
-            self.result_code.append(result.status_code)
-        return self.result_code
+    # def requesition_links(self): #fazer requisição dos links
+    #     self.result_code = []
+    #     for links in self.search_tag:
+    #         result = requests.get(links)
+    #         self.result_code.append(result.status_code)
+    #     return self.result_code
     
     def check_url(self): #testa as urls
-        checked_urls = []
+        
         for urls in self.search_tag:
                       
             try:
                 maybe_url = requests.get(urls)
                 if maybe_url.status_code == 200:
-                    checked_urls.append(urls)
+                    self.result_links.append(urls)
                 
                 
             except:
-                print(f'Url: {urls} < inválida!')
-        return checked_urls, 'Urls verificadas e adicionadas!'
+                self.error_links.append(urls)
+                
+        return self.result_links, self.error_links
         
             
             
@@ -46,7 +48,9 @@ class Logic:
     
 
 a = Logic()
-print(a.get_site_xml())
+a.get_site_xml()
 #print(a.requesition_links())
-print(a.check_url())
+result_links,error_links = a.check_url()
+print(result_links)
+print(error_links)
 
