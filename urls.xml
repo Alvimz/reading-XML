@@ -2,5 +2,31 @@
     <site>https://www.cnbc.com</site>
     <site>https://www.google.com</site>
     <site>https://web.whatsapp.com</site>
+    <site>https://www.reuters.com</site>
+    <site>https://www.bbc.com</site>
+    <site>https://www.nytimes.com</site>
+    <site>https://www.bloomberg.com</site>
+    <site>https://www.foxnews.com</site>
+    <site>https://www.cnn.com</site>
+    <site>https://www.aljazeera.com</site>
     <site>https://www.incorrectsite1.com</site> <!-- URL incorreta -->
+    <site>https://www.theguardian.com</site>
+    <site>https://www.economist.com</site>
+    <site>https://www.washingtonpost.com</site>
+    <site>https://www.nbcnews.com</site>
+    <site>https://www.incorrectsite2.com</site> <!-- URL incorreta -->
+    <site>https://www.cbsnews.com</site>
+    <site>https://www.politico.com</site>
+    <site>https://www.wsj.com</site>
+    <site>https://www.forbes.com</site>
+    <site>https://www.time.com</site>
+    <site>https://www.vox.com</site>
+    <site>https://www.incorrectsite3.com</site> <!-- URL incorreta -->
+    <site>https://www.theatlantic.com</site>
+    <site>https://www.npr.org</site>
+    <site>https://www.buzzfeednews.com</site>
+    <site>https://www.huffpost.com</site>
+    <site>https://www.slashdot.org</site>
+    <site>https://www.theverge.com</site>
+    <site>https://www.techcrunch.com</site>
 </sites>
