@@ -4,13 +4,16 @@ class Logic:
     def __init__(self) -> None:
         self.search_tag= [] #lista para armazenar as tags
     
-    #pega linha por linha do xml e armazena na lista 'search_tag'
     
-    def get_site_xml(self):
+    
+    def get_site_xml(self): #pega linha por linha do xml e armazena na lista 'search_tag'
         with open("urls.xml", "r") as file:
             line = file.read()
-        content = BeautifulSoup(line,'xml') 
-        self.search_tag = content.find_all('site') #procurando por tag
+        content = BeautifulSoup(line,'xml')
+        
+        for item in content.find_all('site'): #salva apenas o link na lista
+            self.search_tag.append(item.text)
+        
         return self.search_tag #retornando em lista com os valores
     
     def remove_tag(self):
@@ -20,7 +23,5 @@ class Logic:
         
 
 a = Logic()
-
-a.get_site_xml()
-a.remove_tag()
+print(a.get_site_xml())
 
