@@ -16,10 +16,7 @@ class Logic:
         
         return self.search_tag #retornando em lista com os valores
     
-    def remove_tag(self):
-        for item in self.search_tag:
-            print(item.text)
-        ...
+
         
 
 a = Logic()
