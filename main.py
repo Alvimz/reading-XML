@@ -45,7 +45,7 @@ class Logic:
     
     def check_if_its_url(self,links):
         pattern_url = r'https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+.com.*'
-        if links == pattern_url:
+        if re.match(pattern_url,links):
             return True
         return False
 
@@ -80,7 +80,7 @@ class Logic:
 
 a = Logic()
 print(a.path_tester_xml())
-print(a.check_empty_line_xml())
+print(a.check_if_its_url('Gabs'))
 # a.get_url_xml()
 # print(a.requesition_links())
 # result_links, error_links = a.check_url_xml()
