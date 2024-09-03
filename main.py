@@ -2,16 +2,10 @@ from bs4 import BeautifulSoup
 import requests
 from openpyxl import load_workbook, Workbook
 
-"""
-- Poderia em vez de usar listas, talvez SETS???
-- Não fiz um verificador se é um link! ❌
-- Usei as funções e classes! ✅
-- Cria a planilha caso não a exista!✅ 
-
-
-
-"""
-
+#recebedor de arquivo!
+    #testa se é um arquivo xml!
+#verificar se é um link!
+#verificar espaços em brancos!
 
 class Logic:
     def __init__(self) -> None:
@@ -19,6 +13,15 @@ class Logic:
         self.links_validated = []  # lista com os links válidos!
         self.links_error = []  # lista com os links errôneos
 
+    def file_tester_xml():
+        supose_file = input('Digite o diretório do arquivo XML!')
+        if '.xml'in supose_file:
+            return True
+        return False
+    
+    def check_empty_box_xml(self):
+        ...
+        
     def get_url_xml(self):  # pega linha por linha do xml e armazena na lista 'links_raw'
         with open("urls.xml", "r") as file:
             line = file.read()
@@ -29,7 +32,7 @@ class Logic:
 
         return self.links_raw  # retornando em lista com os valores
 
-    def check_url(self):  # testa as urls e as separa se funfa ou não!
+    def check_url_xml(self):  # testa as urls e as separa se funfa ou não!
         for urls in self.links_raw:
             try:
                 maybe_url = requests.get(urls)
@@ -55,12 +58,14 @@ class Logic:
         for link in self.links_error:  # adiciona os links não válidos!
             workbook_active.append([link, "Link inválido!"])
         work_book.save("links.xlsx")
-
+    
+  
 
 a = Logic()
-a.get_url_xml()
+a.file_tester_xml()
+# a.get_url_xml()
 # print(a.requesition_links())
-result_links, error_links = a.check_url()
-a.add_link_xlsx()
-print(result_links)
-print(error_links)
+# result_links, error_links = a.check_url_xml()
+# a.add_link_xlsx()
+# print(result_links)
+# print(error_links)
