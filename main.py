@@ -8,7 +8,7 @@ import re
     #testa se é um arquivo xml! ✔️
 #verificador de link
     #verificar se tem a estrutura de um link e o adiciona na lista! ❌
-    #verificar espaços em brancos no xml e o add na lista! ❌
+    #verificar espaços em brancos no xml e o add na lista! ✔️
     #reformular os códigos e tirar esse mundo de lista! ❌
 """
 Pessoa introduz um xml, ele pegará todos os links(tirando os espaços vazios , descartando os digitados errados, linhas em brancos, coisas que
@@ -20,7 +20,7 @@ forem links!), dará um get e salvará o retorno em um arquivo a parte!
 class Logic:
     def __init__(self) -> None:
         self.links_raw = []  # lista para armazenar as tags diretamente do xml
-        self.links_without_space = [] #lista dos links sem espaço!
+        
         self.links_validated = []  # lista com os links válidos!
         self.links_error = []  # lista com os links errôneos
         self.supose_path_xml = None #path do xml!
@@ -32,15 +32,7 @@ class Logic:
             return True,self.supose_path_xml
         return False,None
     
-    #checa se tem linhas vazias já salvando na lista raw!
-    def check_empty_line_xml(self):
-        if self.supose_path_xml != None: #corrigir isto 🟥
-            
-            for link in self.links_raw:
-                if link.strip() == '':
-                    continue
-                self.links_without_space.append(link)
-            return self.links_without_space
+
             
         
         
@@ -51,6 +43,8 @@ class Logic:
 
         for item in content.find_all("site"):  # salva apenas o link na lista
             
+            if item.text.strip() == '':
+                continue
             self.links_raw.append(item.text)
 
         return self.links_raw  # retornando em lista com os valores
@@ -99,6 +93,5 @@ a = Logic()
 a.path_tester_xml()
 print(a.get_line_from_xml())
 print('Acima direto do xml')
-a.check_empty_line_xml()
-print(a.links_without_space)
+
 
