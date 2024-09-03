@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 from openpyxl import load_workbook, Workbook
+import re
 
 #recebedor de arquivo!
     #testa se é um arquivo xml! ✔️
@@ -15,7 +16,7 @@ class Logic:
         self.supose_path_xml = None
         
 
-    def file_tester_xml(self):
+    def path_tester_xml(self):
         self.supose_path_xml = input('Digite o diretório do arquivo XML!')
         if '.xml'in self.supose_path_xml:
             return True,self.supose_path_xml
@@ -41,6 +42,12 @@ class Logic:
             self.links_raw.append(item.text)
 
         return self.links_raw  # retornando em lista com os valores
+    
+    def check_if_its_url(self,links):
+        pattern_url = r'https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+.com.*'
+        if links == pattern_url:
+            return True
+        return False
 
     def check_url_xml(self):  # testa as urls e as separa se funfa ou não!
         for urls in self.links_raw:
@@ -72,7 +79,7 @@ class Logic:
   
 
 a = Logic()
-print(a.file_tester_xml())
+print(a.path_tester_xml())
 print(a.check_empty_line_xml())
 # a.get_url_xml()
 # print(a.requesition_links())
