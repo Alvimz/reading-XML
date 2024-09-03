@@ -9,7 +9,7 @@ import re
 #verificador de link
     #verificar se tem a estrutura de um link e o adiciona na lista! ❌
     #verificar espaços em brancos no xml e o add na lista! ❌
-
+    #reformular os códigos e tirar esse mundo de lista! ❌
 """
 Pessoa introduz um xml, ele pegará todos os links(tirando os espaços vazios , descartando os digitados errados, linhas em brancos, coisas que
 forem links!), dará um get e salvará o retorno em um arquivo a parte!
