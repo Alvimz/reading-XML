@@ -4,24 +4,34 @@ from openpyxl import load_workbook, Workbook
 import re
 
 #recebedor de arquivo!
+    #Verifica peso do arquivo! ❌
     #testa se é um arquivo xml! ✔️
-#verificar se tem a estrutura de um link!
-#verificar espaços em brancos no xml! ✔️
+#verificador de link
+    #verificar se tem a estrutura de um link e o adiciona na lista! ❌
+    #verificar espaços em brancos no xml e o add na lista! ❌
+
+"""
+Pessoa introduz um xml, ele pegará todos os links(tirando os espaços vazios , descartando os digitados errados, linhas em brancos, coisas que
+forem links!), dará um get e salvará o retorno em um arquivo a parte!
+
+"""
+
 
 class Logic:
     def __init__(self) -> None:
         self.links_raw = []  # lista para armazenar as tags diretamente do xml
         self.links_validated = []  # lista com os links válidos!
         self.links_error = []  # lista com os links errôneos
-        self.supose_path_xml = None
+        self.supose_path_xml = None #path do xml!
         
-
-    def path_tester_xml(self):
+    
+    def path_tester_xml(self):#testa se é um xml o que a pessoa está introduzindo!
         self.supose_path_xml = input('Digite o diretório do arquivo XML!')
         if '.xml'in self.supose_path_xml:
             return True,self.supose_path_xml
         return False,None
     
+    #checa se tem linhas vazias!
     def check_empty_line_xml(self):
         if self.supose_path_xml != None:
             with open(self.supose_path_xml,'r') as file:
@@ -33,7 +43,7 @@ class Logic:
             return False
         
         
-    def get_url_xml(self):  # pega linha por linha do xml e armazena na lista 'links_raw'
+    def get_link_from_xml(self):  # pega linha por linha do xml e armazena na lista 'links_raw'
         with open("urls.xml", "r") as file:
             line = file.read()
         content = BeautifulSoup(line, "xml")
@@ -43,13 +53,18 @@ class Logic:
 
         return self.links_raw  # retornando em lista com os valores
     
-    def check_if_its_url(self,links):
+    def check_if_its_url(self):
         pattern_url = r'https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+.com.*'
-        if re.match(pattern_url,links):
-            return True
-        return False
+        for links in self.links_raw:
+            try:
+                
+                if re.match(pattern_url,links):
+                    self.links_validated.append(links)
+                    return self.links_validated
+            except:
+                self.links_error.append(links)
 
-    def check_url_xml(self):  # testa as urls e as separa se funfa ou não!
+    def check_if_url_works_xml(self):  # testa as urls e as separa se funfa ou não!
         for urls in self.links_raw:
             try:
                 maybe_url = requests.get(urls)
@@ -79,7 +94,7 @@ class Logic:
   
 
 a = Logic()
-print(a.path_tester_xml())
+a.path_tester_xml()
 print(a.check_if_its_url('Gabs'))
 # a.get_url_xml()
 # print(a.requesition_links())
