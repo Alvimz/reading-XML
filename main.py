@@ -20,6 +20,7 @@ forem links!), dará um get e salvará o retorno em um arquivo a parte!
 class Logic:
     def __init__(self) -> None:
         self.links_raw = []  # lista para armazenar as tags diretamente do xml
+        self.links_without_space = [] #lista dos links sem espaço!
         self.links_validated = []  # lista com os links válidos!
         self.links_error = []  # lista com os links errôneos
         self.supose_path_xml = None #path do xml!
@@ -31,24 +32,25 @@ class Logic:
             return True,self.supose_path_xml
         return False,None
     
-    #checa se tem linhas vazias!
+    #checa se tem linhas vazias já salvando na lista raw!
     def check_empty_line_xml(self):
-        if self.supose_path_xml != None:
-            with open(self.supose_path_xml,'r') as file:
-                for linha in file:
-                    if linha.strip() == '':
-                        continue
-                return True
-        else:
-            return False
+        if self.supose_path_xml != None: #corrigir isto 🟥
+            
+            for link in self.links_raw:
+                if link.strip() == '':
+                    continue
+                self.links_without_space.append(link)
+            return self.links_without_space
+            
         
         
-    def get_link_from_xml(self):  # pega linha por linha do xml e armazena na lista 'links_raw'
-        with open("urls.xml", "r") as file:
+    def get_line_from_xml(self):  # pega linha por linha do xml e armazena na lista 'links_raw'
+        with open(self.supose_path_xml, "r") as file:
             line = file.read()
         content = BeautifulSoup(line, "xml")
 
         for item in content.find_all("site"):  # salva apenas o link na lista
+            
             self.links_raw.append(item.text)
 
         return self.links_raw  # retornando em lista com os valores
@@ -95,10 +97,8 @@ class Logic:
 
 a = Logic()
 a.path_tester_xml()
-print(a.check_if_its_url('Gabs'))
-# a.get_url_xml()
-# print(a.requesition_links())
-# result_links, error_links = a.check_url_xml()
-# a.add_link_xlsx()
-# print(result_links)
-# print(error_links)
+print(a.get_line_from_xml())
+print('Acima direto do xml')
+a.check_empty_line_xml()
+print(a.links_without_space)
+
