@@ -3,20 +3,22 @@ import requests
 from openpyxl import load_workbook, Workbook
 
 #recebedor de arquivo!
-    #testa se é um arquivo xml!
-#verificar se é um link!
-#verificar espaços em brancos!
+    #testa se é um arquivo xml! ✔️
+#verificar se tem a estrutura de um link!
+#verificar espaços em brancos no xml!
 
 class Logic:
     def __init__(self) -> None:
         self.links_raw = []  # lista para armazenar as tags diretamente do xml
         self.links_validated = []  # lista com os links válidos!
         self.links_error = []  # lista com os links errôneos
+        self.supose_file = None
+        
 
-    def file_tester_xml():
-        supose_file = input('Digite o diretório do arquivo XML!')
-        if '.xml'in supose_file:
-            return True
+    def file_tester_xml(self):
+        supose_path_xml = input('Digite o diretório do arquivo XML!')
+        if '.xml'in supose_path_xml:
+            return True,supose_path_xml
         return False
     
     def check_empty_box_xml(self):
@@ -62,7 +64,7 @@ class Logic:
   
 
 a = Logic()
-a.file_tester_xml()
+print(a.file_tester_xml())
 # a.get_url_xml()
 # print(a.requesition_links())
 # result_links, error_links = a.check_url_xml()
