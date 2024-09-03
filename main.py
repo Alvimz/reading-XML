@@ -50,14 +50,15 @@ class Logic:
         return self.links_raw  # retornando em lista com os valores
     
     def check_if_its_url(self):
-        pattern_url = r'https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+.com.*'
+        pattern_url = r'https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+(\.[a-zA-Z]{2,})(?:/.*)?'
+            
         for links in self.links_raw:
-            try:
-                
-                if re.match(pattern_url,links):
-                    self.links_validated.append(links)
-                    return self.links_validated
-            except:
+                           
+            if re.match(pattern_url,links):
+                self.links_validated.append(links)
+            
+            else:
+                       
                 self.links_error.append(links)
 
     def check_if_url_works_xml(self):  # testa as urls e as separa se funfa ou não!
@@ -92,6 +93,7 @@ class Logic:
 a = Logic()
 a.path_tester_xml()
 print(a.get_line_from_xml())
-print('Acima direto do xml')
+a.check_if_its_url()
+print(a.links_validated,'--',a.links_error)
 
 
