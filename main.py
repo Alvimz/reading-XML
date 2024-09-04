@@ -49,7 +49,7 @@ class Logic:
 
         return self.links_raw  # retornando em lista com os valores
     
-    def check_if_its_url(self):
+    def check_if_its_url(self): #verifica se o link funciona , dividindo entre os funcionais e os não funcionais!
         pattern_url = r'https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+(\.[a-zA-Z]{2,})(?:/.*)?'
             
         for links in self.links_raw:
@@ -73,7 +73,13 @@ class Logic:
 
         return self.links_validated, self.links_error
 
-    def add_link_xlsx(self):  # passa os links para a planilha!
+    def create_path_html():
+        ...
+        
+    def create_htmls():
+        ...
+    
+    def add_link_xlsx(self):  # passa os links para a planilha! #remover isso aqui!!🔴
         try:
             # carrega a planilha caso ela não exista
             work_book = load_workbook("links.xlsx")
