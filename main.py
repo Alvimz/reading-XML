@@ -1,20 +1,22 @@
 from bs4 import BeautifulSoup
 import requests
-from openpyxl import load_workbook, Workbook
+
 import re
 import os
 
 #recebedor de arquivo!
     #Verifica peso do arquivo! ❌
-    #verifica se o que o cara digitou é vazio❌ 
+     
     #testa se é um arquivo xml! ✔️
 #verificador de link
     #verificar se tem a estrutura de um link e o adiciona na lista! ❌
     #verificar espaços em brancos no xml e o add na lista! ✔️
-    #reformular os códigos e tirar esse mundo de lista! ❌
+     
 #distribui os links em htmls
-    #criação da pasta para inserção dos htmls!❌
+    #criação da pasta para inserção dos htmls!✔️
     #criação arquivo htmls com o resultado do get!❌
+#inputs
+    #verifica se o que o cara digitou é vazio❌
 """
 Pessoa introduz um xml, ele pegará todos os links(tirando os espaços vazios , descartando os digitados errados, linhas em brancos, coisas que
 forem links!), dará um get e salvará o retorno em um arquivo a parte!
@@ -43,7 +45,7 @@ class Logic:
         if self.supose_path_xml.endswith('.xml'):
             self.supose_path_lib = input('Digite agora onde deseja salvar a pasta de retorno do xml! ')
             self.create_path_html(self.supose_path_lib)
-            return self.supose_path_xml
+            return self.supose_path_xml,self.supose_path_lib
             
             
     def path_tester_xml(self):#testa se é um xml o que a pessoa está introduzindo!
@@ -107,21 +109,7 @@ class Logic:
         
     def create_htmls():
         ...
-    
-    def add_link_xlsx(self):  # passa os links para a planilha! #remover isso aqui!!🔴
-        try:
-            # carrega a planilha caso ela não exista
-            work_book = load_workbook("links.xlsx")
-            workbook_active = work_book.active
-        except:
-            # cria a planilha!
-            work_book = Workbook()
-            workbook_active = work_book.active
-        for link in self.links_validated:  # adiciona os links válidos
-            workbook_active.append([link, "Link válido!"])
-        for link in self.links_error:  # adiciona os links não válidos!
-            workbook_active.append([link, "Link inválido!"])
-        work_book.save("links.xlsx")
+
     
   
 
