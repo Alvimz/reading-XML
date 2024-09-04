@@ -34,12 +34,12 @@ class Logic:
         self.supose_path_xml = None #path do xml!
         self.supose_path_lib = None #path lib!
         self.pasta_name = 'Resultado_xml'
-        self.path_lib = None
+        self.path_html_final = None
         
         
-    def create_path_html(self,path):#cria a pasta para receber os html
+    def create_path_html(self):#cria a pasta para receber os html
         
-        path_complete = os.path.join(path,self.pasta_name)
+        path_complete = os.path.join(self.path_html_final,self.pasta_name)
         if not os.path.exists(path_complete):
             os.makedirs(path_complete)
             print('Pasta criada com sucesso!')
@@ -48,17 +48,11 @@ class Logic:
         self.supose_path_xml = input('Digite o diretório do arquivo XML!')
         if self.supose_path_xml.endswith('.xml'):
             self.supose_path_lib = input('Digite agora onde deseja salvar a pasta de retorno do xml! ')
-            self.create_path_html(self.supose_path_lib)
+            #🆘 adicionar testador de input!
             return self.supose_path_xml,self.supose_path_lib
             
             
-    def path_tester_xml(self):#testa se é um xml o que a pessoa está introduzindo!
-        self.supose_path_xml = input('Digite o diretório do arquivo XML!')
-        
-        # self.create_path_html(self.supose_path_xml)
-        if '.xml'in self.supose_path_xml: #.endswith('.xml')
-            return True,self.supose_path_xml
-        return False,None
+
     
     def empty_input():
         answer = input('>')
@@ -109,15 +103,15 @@ class Logic:
         
         
         
-        
-    def create_path_html(self):
-        self.path_lib = f'{self.supose_path_lib}{self.pasta_name}'
-        return self.path_lib
+        #cria a path para geração dos html!
+    def create_html_link(self):
+        self.path_html_final = f'{self.supose_path_lib}{self.pasta_name}'
+        return self.path_html_final
     
     def create_htmls_validated(self):
         for links in self.links_validated:
-            if not os.path.exists(self.path_lib,links):
-                with open(self.path_lib,'w') as file:
+            if not os.path.exists(self.path_html_final,links):
+                with open(self.path_html_final,'w') as file:
                     file.write('<!DOCTYPE html>\n')
                     file.write('<html>\n')
                     file.write('<head>\n')
@@ -137,10 +131,11 @@ class Logic:
 a = Logic()
 
 a.get_paths_xml_lib_html() #pegar os paths
-#a.create_path_html() #criar pasta html
 
-a.get_line_from_xml() #pega as linhas do xml!
-a.check_if_its_url()
+a.create_html_link()
+a.create_path_html()
+# a.get_line_from_xml() #pega as linhas do xml!
+# a.create_htmls_validated()
 
 
 
