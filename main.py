@@ -34,15 +34,15 @@ class Logic:
         self.links_error = []  # lista com os links errôneos
         self.supose_path_xml = None #path do xml!
         self.supose_path_lib = None #path lib!
-        self.pasta_name = 'Resultado_xml'
-        self.path_html_final = None
+        self.pasta_name = 'Resultado_xml' #nome da pasta que será criada para armazenar o output!
+        self.path_html_output = None #path da pasta do output html
         
         
     def create_path_html(self):#cria a pasta para receber os html
         
         
-        if not os.path.exists(self.path_html_final):
-            os.makedirs(self.path_html_final)
+        if not os.path.exists(self.path_html_output):
+            os.makedirs(self.path_html_output)
             print('Pasta criada com sucesso!')
         else:
             print('Pasta para os registros já existe!')
@@ -108,11 +108,27 @@ class Logic:
         
         #cria a path para geração dos html!
     def generate_html_path(self):
-        self.path_html_final = f'{self.supose_path_lib}/{self.pasta_name}'
-        return self.path_html_final
+        self.path_html_output = f'{self.supose_path_lib}/{self.pasta_name}'
+        return self.path_html_output
     
-    def create_htmls_validated(self):
-        print(1,2,3)
+    def create_htmls_validated(self): #cria os html verificados!
+        for links in self.links_validated:
+            file_name = links[7:]
+            file_path = os.path.join(self.path_html_output,f'{file_name}.html')
+            if os.path.exists(file_path):
+                pass
+            else:
+                with open(file_path,'w') as html_file:
+                    html_file.write('<!DOCTYPE html>\n')
+                    html_file.write('<html>\n')
+                    html_file.write('<head>\n')
+                    html_file.write('<title>Link Validado</title>\n')
+                    html_file.write('</head>\n')
+                    html_file.write('<body>\n')
+                    html_file.write(f'<h1>Link Validado: {links}</h1>\n')
+                    html_file.write('</body>\n')
+                    html_file.write('</html>\n')
+                
         
             
             
@@ -129,6 +145,7 @@ a.generate_html_path()
 a.create_path_html() 
 a.get_line_from_xml() #pega as linhas do xml!
 a.check_if_its_url()
+print(a.links_validated)
 
 
 a.create_htmls_validated() #empacando aqui!
