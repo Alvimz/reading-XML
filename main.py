@@ -6,7 +6,7 @@ import os
 
 #recebedor de arquivo!
     #Verifica peso do arquivo! ❌
-    #criando uma pasta dentro da outra!❌
+    #criando uma pasta dentro da outra!✔️
      
     #testa se é um arquivo xml! ✔️
 #verificador de link
@@ -44,6 +44,8 @@ class Logic:
         if not os.path.exists(self.path_html_final):
             os.makedirs(self.path_html_final)
             print('Pasta criada com sucesso!')
+        else:
+            print('Pasta para os registros já existe!')
             
     def get_paths_xml_lib_html(self): #pega os diretórios para executa-los!
         self.supose_path_xml = input('Digite o diretório do arquivo XML!')
@@ -110,21 +112,11 @@ class Logic:
         return self.path_html_final
     
     def create_htmls_validated(self):
-        for links in self.links_validated:
-            if not os.path.exists(self.path_html_final,links):
-                with open(self.path_html_final,'w') as file:
-                    file.write('<!DOCTYPE html>\n')
-                    file.write('<html>\n')
-                    file.write('<head>\n')
-                    file.write('<title>Exemplo</title>\n')
-                    file.write('</head>\n')
-                    file.write('<body>\n')
-                    file.write('<h1>Olá, Mundo!</h1>\n')
-                    file.write('</body>\n')
-                    file.write('</html>\n')
+        print(1,2,3)
+        
             
             
-            ...
+            
 
     
   
@@ -136,7 +128,10 @@ a.get_paths_xml_lib_html() #pegar os paths
 a.generate_html_path()
 a.create_path_html() 
 a.get_line_from_xml() #pega as linhas do xml!
-# a.create_htmls_validated()
+a.check_if_its_url()
+
+
+a.create_htmls_validated() #empacando aqui!
 
 
 
