@@ -40,9 +40,9 @@ class Logic:
         
     def create_path_html(self):#cria a pasta para receber os html
         
-        path_complete = os.path.join(self.path_html_final,self.pasta_name)
-        if not os.path.exists(path_complete):
-            os.makedirs(path_complete)
+        
+        if not os.path.exists(self.path_html_final):
+            os.makedirs(self.path_html_final)
             print('Pasta criada com sucesso!')
             
     def get_paths_xml_lib_html(self): #pega os diretórios para executa-los!
@@ -135,7 +135,7 @@ a.get_paths_xml_lib_html() #pegar os paths
 
 a.generate_html_path()
 a.create_path_html() 
-# a.get_line_from_xml() #pega as linhas do xml!
+a.get_line_from_xml() #pega as linhas do xml!
 # a.create_htmls_validated()
 
 
