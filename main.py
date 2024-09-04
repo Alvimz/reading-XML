@@ -6,6 +6,7 @@ import os
 
 #recebedor de arquivo!
     #Verifica peso do arquivo! ❌
+    #criando uma pasta dentro da outra!❌
      
     #testa se é um arquivo xml! ✔️
 #verificador de link
@@ -104,8 +105,8 @@ class Logic:
         
         
         #cria a path para geração dos html!
-    def create_html_link(self):
-        self.path_html_final = f'{self.supose_path_lib}{self.pasta_name}'
+    def generate_html_path(self):
+        self.path_html_final = f'{self.supose_path_lib}/{self.pasta_name}'
         return self.path_html_final
     
     def create_htmls_validated(self):
@@ -132,8 +133,8 @@ a = Logic()
 
 a.get_paths_xml_lib_html() #pegar os paths
 
-a.create_html_link()
-a.create_path_html()
+a.generate_html_path()
+a.create_path_html() 
 # a.get_line_from_xml() #pega as linhas do xml!
 # a.create_htmls_validated()
 
