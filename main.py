@@ -10,6 +10,9 @@ import re
     #verificar se tem a estrutura de um link e o adiciona na lista! ❌
     #verificar espaços em brancos no xml e o add na lista! ✔️
     #reformular os códigos e tirar esse mundo de lista! ❌
+#distribui os links em htmls
+    #criação da pasta para inserção dos htmls!
+    #criação arquivo htmls com o resultado do get!
 """
 Pessoa introduz um xml, ele pegará todos os links(tirando os espaços vazios , descartando os digitados errados, linhas em brancos, coisas que
 forem links!), dará um get e salvará o retorno em um arquivo a parte!
@@ -32,7 +35,11 @@ class Logic:
             return True,self.supose_path_xml
         return False,None
     
-
+    def empty_input():
+        answer = input('>')
+        if not answer:
+            return True
+        
             
         
         
