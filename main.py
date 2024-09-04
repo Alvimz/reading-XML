@@ -25,6 +25,7 @@ forem links!), dará um get e salvará o retorno em um arquivo a parte!
 
 
 class Logic:
+    
     def __init__(self) -> None:
         self.links_raw = []  # lista para armazenar as tags diretamente do xml
         
@@ -32,10 +33,13 @@ class Logic:
         self.links_error = []  # lista com os links errôneos
         self.supose_path_xml = None #path do xml!
         self.supose_path_lib = None #path lib!
+        self.pasta_name = 'Resultado_xml'
+        self.path_lib = None
+        
         
     def create_path_html(self,path):
-        pasta_name = 'Resultado_xml!'
-        path_complete = os.path.join(path,pasta_name)
+        
+        path_complete = os.path.join(path,self.pasta_name)
         if not os.path.exists(path_complete):
             os.makedirs(path_complete)
             print('Pasta criada com sucesso!')
@@ -105,17 +109,23 @@ class Logic:
         
         
         
-        ...
         
-    def create_htmls():
-        ...
+    def create_path_html(self):
+        self.path_lib = f'{self.supose_path_lib}{self.pasta_name}'
+        return self.path_lib
+    
+    def create_htmls(self):
+        for links in self.links_validated:
+            
+            
+            ...
 
     
   
 
 a = Logic()
 
-a.get_paths()
+
 print(a.get_line_from_xml())
 a.check_if_its_url()
 print(a.links_validated,'--',a.links_error)
