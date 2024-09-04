@@ -112,8 +112,9 @@ class Logic:
         return self.path_html_output
     
     def create_htmls_validated(self): #cria os html verificados!
+        pattern_link = r'[<>:"/\\|?*\x00-\x1F]'
         for links in self.links_validated:
-            file_name = links[7:]
+            file_name = re.sub(pattern_link,'_',links[7:])
             file_path = os.path.join(self.path_html_output,f'{file_name}.html')
             if os.path.exists(file_path):
                 pass
