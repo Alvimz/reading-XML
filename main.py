@@ -29,6 +29,7 @@ class Logic:
         self.links_validated = []  # lista com os links válidos!
         self.links_error = []  # lista com os links errôneos
         self.supose_path_xml = None #path do xml!
+        self.supose_path_lib = None #path lib!
         
     def create_path_html(self,path):
         pasta_name = 'Resultado_xml!'
