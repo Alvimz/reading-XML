@@ -17,3 +17,9 @@ class verifications:
                 return False
             
             return True
+        
+        @staticmethod
+        def this_file_exists(file):
+            if os.path.exists(file):
+                return True
+            
