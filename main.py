@@ -42,7 +42,7 @@ class Logic:
         
     
     def create_path_html(self):  # cria a pasta para receber os html
-        if not os.path.exists(self.path_html_output) and self.supose_path_lib:
+        if not verifications.this_file_exists(self.path_html_output) and self.supose_path_lib:
             os.makedirs(self.path_html_output)
             print("Pasta criada com sucesso!")
         else:
@@ -50,7 +50,7 @@ class Logic:
 
     def get_paths_xml_lib_html(self):  # pega os diretórios para executa-los!
         self.supose_path_xml = input("Digite o diretório do arquivo XML: ")
-        if verifications.xml_light_weight(self.supose_path_xml):
+        if verifications.file_size(self.supose_path_xml):
             
         
             

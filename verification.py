@@ -2,7 +2,7 @@ import os
 
 class verifications:
         @staticmethod
-        def xml_light_weight(path_xml):
+        def file_size(path_xml):
             
             if os.path.getsize(path_xml) < 10 *1024 *1024:
                 return True
