@@ -32,9 +32,8 @@ class Logic:
         self.links_error = []  # lista com os links errôneos
         self.supose_path_xml = None  # path do xml!
         self.supose_path_lib = None  # path lib!
-        self.pasta_name = (
-            "Resultado_xml"  # nome da pasta que será criada para armazenar o output!
-        )
+        self.pasta_name = "Resultado_xml"  # nome da pasta que será criada para armazenar o output!
+        
         self.path_html_output = None  # path da pasta do output html
 
     def create_path_html(self):  # cria a pasta para receber os html
@@ -45,18 +44,25 @@ class Logic:
             print("Pasta para os registros já existe!")
 
     def get_paths_xml_lib_html(self):  # pega os diretórios para executa-los!
-        self.supose_path_xml = input("Digite o diretório do arquivo XML!")
-        if self.supose_path_xml.endswith(".xml"):
+        self.supose_path_xml = input("Digite o diretório do arquivo XML: ")
+        
+            
+        if self.supose_path_xml.endswith(".xml") and not self.empty_input:
             self.supose_path_lib = input(
-                "Digite agora onde deseja salvar a pasta de retorno do xml! "
-            )
+                "Digite agora onde deseja salvar a pasta de retorno do xml! ")
             # 🆘 adicionar testador de input!
             return self.supose_path_xml, self.supose_path_lib
-
-    def empty_input():
-        answer = input(">")
-        if not answer:
-            return True
+        else:
+            print('Por favor, insira um arquivo XML!')
+        
+        
+    @staticmethod
+    def empty_input(answer):
+        if answer:
+            
+            return False
+        
+        return True
 
     def get_line_from_xml(
         self,
@@ -127,10 +133,10 @@ a = Logic()
 a.get_paths_xml_lib_html()  # pegar os paths
 
 a.generate_html_path()
-a.create_path_html()
-a.get_line_from_xml()  # pega as linhas do xml!
-a.check_if_its_url()
-print(a.links_validated)
+# a.create_path_html()
+# a.get_line_from_xml()  # pega as linhas do xml!
+# a.check_if_its_url()
+# print(a.links_validated)
 
 
-a.create_htmls_validated()  # empacando aqui!
+# a.create_htmls_validated()  # empacando aqui!
