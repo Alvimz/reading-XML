@@ -20,7 +20,8 @@ import os
     #criação arquivo htmls com o resultado do get!❌
     #criação arquivo htmls verificados/errôneos! ✔️/❌
 #inputs
-    #verifica se o que o cara digitou é vazio❌
+    #verifica se o que o cara digitou é vazio✔️
+    Criação de pasta chamada None!
 """
 
 
@@ -36,8 +37,18 @@ class Logic:
         
         self.path_html_output = None  # path da pasta do output html
 
+    @staticmethod
+    def xml_light_weight(path_xml):
+        if os.path.getsize(path_xml) < 10 *1024 *1024:
+            return True
+        else:
+            print('Arquivo muito pesado!')
+            return False
+            
+        ...
+    
     def create_path_html(self):  # cria a pasta para receber os html
-        if not os.path.exists(self.path_html_output):
+        if not os.path.exists(self.path_html_output) and self.supose_path_lib:
             os.makedirs(self.path_html_output)
             print("Pasta criada com sucesso!")
         else:
@@ -109,6 +120,7 @@ class Logic:
 
         # cria a path para geração dos html!
 
+    
     def generate_html_path(self):
         self.path_html_output = f"{self.supose_path_lib}/{self.pasta_name}"  # alterar para join futuramente!🟨
         return self.path_html_output
