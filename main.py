@@ -3,11 +3,11 @@ import requests
 
 import re
 import os
-
+from verification import verifications
 """
 
 #recebedor de arquivo!
-    #Verifica peso do arquivo! ❌
+    #Verifica peso do arquivo! ✔️
     #criando uma pasta dentro da outra!✔️
     
     #testa se é um arquivo xml! ✔️
@@ -37,15 +37,9 @@ class Logic:
         
         self.path_html_output = None  # path da pasta do output html
 
-    @staticmethod
-    def xml_light_weight(path_xml):
-        if os.path.getsize(path_xml) < 10 *1024 *1024:
-            return True
-        else:
-            print('Arquivo muito pesado!')
-            return False
+    
             
-        ...
+        
     
     def create_path_html(self):  # cria a pasta para receber os html
         if not os.path.exists(self.path_html_output) and self.supose_path_lib:
@@ -56,18 +50,20 @@ class Logic:
 
     def get_paths_xml_lib_html(self):  # pega os diretórios para executa-los!
         self.supose_path_xml = input("Digite o diretório do arquivo XML: ")
+        if verifications.xml_light_weight(self.supose_path_xml):
+            
         
             
-        if self.supose_path_xml.endswith(".xml") and self.empty_input:
-            self.supose_path_lib = input("Digite agora onde deseja salvar a pasta de retorno do xml:")
-            if not self.empty_input:
-                return self.supose_path_xml, self.supose_path_lib
+            if self.supose_path_xml.endswith(".xml") and self.empty_input:
+                self.supose_path_lib = input("Digite agora onde deseja salvar a pasta de retorno do xml:")
+                if not self.empty_input:
+                    return self.supose_path_xml, self.supose_path_lib
+                else:
+                    print('Por favor, insira um diretório!')
+                    
             else:
-                print('Por favor, insira um diretório!')
-                
-        else:
-            print('Por favor, insira um arquivo XML!')
-        
+                print('Por favor, insira um arquivo XML!')
+            
         
     @staticmethod
     def empty_input(answer):
@@ -153,8 +149,8 @@ a.generate_html_path()
 a.create_path_html()
 a.get_line_from_xml()  # pega as linhas do xml!
 a.check_if_its_url()
-print(a.links_validated)
-print(a.links_error)
+#print(a.links_validated)
+#print(a.links_error)
 
 
 a.create_htmls_validated()  # empacando aqui!
