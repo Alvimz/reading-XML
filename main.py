@@ -93,14 +93,17 @@ class Logic:
                 self.links_error.append(links)
 
     def check_if_url_works_xml(self):  # testa as urls e as separa se funfa ou não!
-        for urls in self.links_raw:
+        for urls in self.links_validated:
             try: #tirar esse try 🟨
                 maybe_url = requests.get(urls)
-                if maybe_url.status_code == 200:
-                    self.links_validated.append(urls)
+                if maybe_url.status_code != 200:
+                    self.links_error.append(urls)
+                    self.links_validated.remove(urls)
+                    
 
             except:
-                self.links_error.append(urls)
+                ...
+        print('Links adicionados aos seus devidos lugares!')
 
         return self.links_validated, self.links_error
 
@@ -135,10 +138,11 @@ a = Logic()
 a.get_paths_xml_lib_html()  # pegar os paths
 
 a.generate_html_path()
-# a.create_path_html()
-# a.get_line_from_xml()  # pega as linhas do xml!
-# a.check_if_its_url()
-# print(a.links_validated)
+a.create_path_html()
+a.get_line_from_xml()  # pega as linhas do xml!
+a.check_if_its_url()
+print(a.links_validated)
+print(a.links_error)
 
 
-# a.create_htmls_validated()  # empacando aqui!
+a.create_htmls_validated()  # empacando aqui!
