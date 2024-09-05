@@ -54,9 +54,9 @@ class Logic:
             
         
             
-            if self.supose_path_xml.endswith(".xml") and self.empty_input:
+            if self.supose_path_xml.endswith(".xml") and not verifications.empty_input(self.supose_path_xml):
                 self.supose_path_lib = input("Digite agora onde deseja salvar a pasta de retorno do xml:")
-                if not self.empty_input:
+                if not verifications.empty_input(self.supose_path_lib):
                     return self.supose_path_xml, self.supose_path_lib
                 else:
                     print('Por favor, insira um diretório!')
@@ -65,13 +65,7 @@ class Logic:
                 print('Por favor, insira um arquivo XML!')
             
         
-    @staticmethod
-    def empty_input(answer):
-        if answer:
-            
-            return False
-        
-        return True
+    
 
     def get_line_from_xml(
         self,

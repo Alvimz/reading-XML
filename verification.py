@@ -9,3 +9,11 @@ class verifications:
             else:
                 print('Arquivo muito pesado!')
                 return False
+        
+        @staticmethod
+        def empty_input(answer):
+            if answer:
+                
+                return False
+            
+            return True
