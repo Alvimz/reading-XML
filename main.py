@@ -47,11 +47,13 @@ class Logic:
         self.supose_path_xml = input("Digite o diretório do arquivo XML: ")
         
             
-        if self.supose_path_xml.endswith(".xml") and not self.empty_input:
-            self.supose_path_lib = input(
-                "Digite agora onde deseja salvar a pasta de retorno do xml! ")
-            # 🆘 adicionar testador de input!
-            return self.supose_path_xml, self.supose_path_lib
+        if self.supose_path_xml.endswith(".xml") and self.empty_input:
+            self.supose_path_lib = input("Digite agora onde deseja salvar a pasta de retorno do xml:")
+            if not self.empty_input:
+                return self.supose_path_xml, self.supose_path_lib
+            else:
+                print('Por favor, insira um diretório!')
+                
         else:
             print('Por favor, insira um arquivo XML!')
         
