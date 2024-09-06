@@ -15,8 +15,9 @@ class Verifications:
         def empty_input(answer):
             if answer:
                 
+                
                 return False
-            
+            print('Por favor, insira algo!')
             return True
         
         @staticmethod
@@ -31,7 +32,9 @@ class Verifications:
 
             if re.match(pattern_path,path):
                 return True
-            print('Insira um diretório!')
+            else:
+                
+                print('Insira um diretório!')
             
         @staticmethod
         def this_urls_works(url):
@@ -47,3 +50,10 @@ class Verifications:
                 return True
             except:
                 return False
+        @staticmethod
+        def this_is_a_xml(path):
+            pattern_path = r"^[a-zA-Z]:\\(?:[^<>:\"\/\\|?*\n]+\\)*[^<>:\"\/\\|?*\n]+\.(xml)$"
+            if re.match(pattern_path,path):
+                return True
+            
+

@@ -49,20 +49,26 @@ class Logic:
             print("Pasta para os registros já existe!")
 
     def get_paths_xml_lib_html(self):  # pega os diretórios para executa-los!
-        self.supose_path_xml = input("Digite o diretório do arquivo XML: ")
-        if Verifications.file_size(self.supose_path_xml) and Verifications.this_path_works(self.supose_path_xml):
+        supose_path_xml = input("Digite o diretório do arquivo XML: ")
+        if not Verifications.empty_input(supose_path_xml):
+            
+            if Verifications.file_size(supose_path_xml) and Verifications.this_is_a_xml(supose_path_xml):
+                self.supose_path_xml = supose_path_xml
+                supose_path_lib = input("Digite agora onde deseja salvar a pasta de retorno do xml:")
+                if Verifications.empty_input(supose_path_lib) and Verifications.this_path_works(supose_path_lib):
+                    self.supose_path_lib = supose_path_lib
+                    return self.supose_path_xml, self.supose_path_lib
+           
+                         
+          
+
+            
             
         
             
-            if self.supose_path_xml.endswith(".xml") and not Verifications.empty_input(self.supose_path_xml):
-                self.supose_path_lib = input("Digite agora onde deseja salvar a pasta de retorno do xml:")
-                if not Verifications.empty_input(self.supose_path_lib) and Verifications.this_path_works(self.supose_path_lib):
-                    return self.supose_path_xml, self.supose_path_lib
-                else:
-                    ...
-                    
-            else:
-                print('Por favor, insira um arquivo XML!')
+            
+              
+               
             
         
     
@@ -94,24 +100,11 @@ class Logic:
         return self.links_error,self.links_validated
         
 
-    def check_if_url_works_xml(self):  # testa as urls e as separa se funfa ou não!
-        for urls in self.links_validated:
-            try: #tirar esse try 🟨
-                maybe_url = requests.get(urls)
-                if maybe_url.status_code != 200:
-                    self.links_error.append(urls)
-                    self.links_validated.remove(urls)
-                    
-
-            except:
-                ...
-        print('Links adicionados aos seus devidos lugares!')
-
-        return self.links_validated, self.links_error
-
-        # cria a path para geração dos html!
-
     
+
+        
+
+    # cria a path para geração dos html!
     def generate_html_path(self):
         self.path_html_output = f"{self.supose_path_lib}/{self.pasta_name}"  # alterar para join futuramente!🟨
         return self.path_html_output
@@ -140,12 +133,13 @@ a = Logic()
 
 a.get_paths_xml_lib_html()  # pegar os paths
 
-a.generate_html_path()
-a.create_path_html()
-a.get_line_from_xml()  # pega as linhas do xml!
-a.check_if_its_url()
+#a.generate_html_path()
+#a.create_path_html()
+#a.get_line_from_xml()  # pega as linhas do xml!
+#a.check_if_its_url()
+#---------
 #print(a.links_validated)
 #print(a.links_error)
 
 
-a.create_htmls_validated()  # empacando aqui!
+#a.create_htmls_validated()  # empacando aqui!
