@@ -3,7 +3,7 @@ import requests
 
 import re
 import os
-from verification import verifications
+from verification import Verifications
 """
 
 #recebedor de arquivo!
@@ -42,7 +42,7 @@ class Logic:
         
     
     def create_path_html(self):  # cria a pasta para receber os html
-        if not verifications.this_file_exists(self.path_html_output) and self.supose_path_lib:
+        if not Verifications.this_file_exists(self.path_html_output) and self.supose_path_lib:
             os.makedirs(self.path_html_output)
             print("Pasta criada com sucesso!")
         else:
@@ -50,13 +50,13 @@ class Logic:
 
     def get_paths_xml_lib_html(self):  # pega os diretórios para executa-los!
         self.supose_path_xml = input("Digite o diretório do arquivo XML: ")
-        if verifications.file_size(self.supose_path_xml) and verifications.this_a_path(self.supose_path_xml):
+        if Verifications.file_size(self.supose_path_xml) and Verifications.this_path_works(self.supose_path_xml):
             
         
             
-            if self.supose_path_xml.endswith(".xml") and not verifications.empty_input(self.supose_path_xml):
+            if self.supose_path_xml.endswith(".xml") and not Verifications.empty_input(self.supose_path_xml):
                 self.supose_path_lib = input("Digite agora onde deseja salvar a pasta de retorno do xml:")
-                if not verifications.empty_input(self.supose_path_lib) and verifications.this_a_path(self.supose_path_lib):
+                if not Verifications.empty_input(self.supose_path_lib) and Verifications.this_path_works(self.supose_path_lib):
                     return self.supose_path_xml, self.supose_path_lib
                 else:
                     ...
@@ -85,11 +85,14 @@ class Logic:
         
 
         for links in self.links_raw:
-            if verifications.this_urls_works(links):
+            if Verifications.this_urls_works(links) and Verifications.get_links(links):
                 self.links_validated.append(links)
 
             else:
                 self.links_error.append(links)
+        print('Links testados e verificados!')
+        return self.links_error,self.links_validated
+        
 
     def check_if_url_works_xml(self):  # testa as urls e as separa se funfa ou não!
         for urls in self.links_validated:
