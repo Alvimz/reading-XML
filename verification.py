@@ -31,3 +31,10 @@ class verifications:
                 return True
             print('Insira um diretório!')
             
+        @staticmethod
+        def this_urls_works(url):
+            pattern_url = r"https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+(\.[a-zA-Z]{2,})(?:/.*)?"
+            if re.match(pattern_url,url):
+                return True
+            
+            
