@@ -4,6 +4,7 @@ import requests
 import re
 import os
 from verification import Verifications
+
 """
 
 #recebedor de arquivo!
@@ -33,45 +34,39 @@ class Logic:
         self.links_error = []  # lista com os links errôneos
         self.supose_path_xml = None  # path do xml!
         self.supose_path_lib = None  # path lib!
-        self.pasta_name = "Resultado_xml"  # nome da pasta que será criada para armazenar o output!
-        
+        self.pasta_name = (
+            "Resultado_xml"  # nome da pasta que será criada para armazenar o output!
+        )
+
         self.path_html_output = None  # path da pasta do output html
 
-    
-            
-        
-    
     def create_path_html(self):  # cria a pasta para receber os html
-        if not Verifications.this_file_exists(self.path_html_output) and self.supose_path_lib:
+        if (
+            not Verifications.this_file_exists(self.path_html_output)
+            and self.supose_path_lib
+        ):
             os.makedirs(self.path_html_output)
             print("Pasta criada com sucesso!")
         else:
             print("Pasta para os registros já existe!")
 
     def get_paths_xml_lib_html(self):  # pega os diretórios para executa-los!
-        supose_path_xml = input("Digite o diretório do arquivo XML: ")
-        if not Verifications.empty_input(supose_path_xml):
+        supose_path_xml = input("Digite o diretório do arquivo XML[até 10mb]: ")
+        if (not Verifications.empty_input(supose_path_xml)
+            and Verifications.this_is_a_xml(supose_path_xml)
+            and Verifications.file_size(supose_path_xml)):
             
-            if Verifications.file_size(supose_path_xml) and Verifications.this_is_a_xml(supose_path_xml):
-                self.supose_path_xml = supose_path_xml
-                supose_path_lib = input("Digite agora onde deseja salvar a pasta de retorno do xml:")
-                if Verifications.empty_input(supose_path_lib) and Verifications.this_path_works(supose_path_lib):
-                    self.supose_path_lib = supose_path_lib
-                    return self.supose_path_xml, self.supose_path_lib
-           
-                         
-          
+            self.supose_path_xml = supose_path_xml
 
-            
-            
-        
-            
-            
-              
-               
-            
-        
-    
+            supose_path_lib = input("Digite agora onde deseja salvar a pasta de retorno do xml:")
+            if not Verifications.empty_input(supose_path_lib) and Verifications.this_path_works(supose_path_lib):
+                print("Tudo certo!")
+                self.supose_path_lib = supose_path_lib
+                return self.supose_path_xml, self.supose_path_lib
+            else:
+                print('Tem coisa errada aí!')
+        else:
+            print("Aconteceu algo de errado!")
 
     def get_line_from_xml(
         self,
@@ -87,22 +82,17 @@ class Logic:
 
         return self.links_raw  # retornando em lista com os valores
 
-    def check_if_its_url(self):  # verifica se o link funciona , dividindo entre os funcionais e os não funcionais!
-        
-
+    def check_if_its_url(
+        self,
+    ):  # verifica se o link funciona , dividindo entre os funcionais e os não funcionais!
         for links in self.links_raw:
             if Verifications.this_urls_works(links) and Verifications.get_links(links):
                 self.links_validated.append(links)
 
             else:
                 self.links_error.append(links)
-        print('Links testados e verificados!')
-        return self.links_error,self.links_validated
-        
-
-    
-
-        
+        print("Links testados e verificados!")
+        return self.links_error, self.links_validated
 
     # cria a path para geração dos html!
     def generate_html_path(self):
@@ -133,13 +123,13 @@ a = Logic()
 
 a.get_paths_xml_lib_html()  # pegar os paths
 
-#a.generate_html_path()
-#a.create_path_html()
-#a.get_line_from_xml()  # pega as linhas do xml!
-#a.check_if_its_url()
-#---------
-#print(a.links_validated)
-#print(a.links_error)
+# a.generate_html_path()
+# a.create_path_html()
+# a.get_line_from_xml()  # pega as linhas do xml!
+# a.check_if_its_url()
+# ---------
+# print(a.links_validated)
+# print(a.links_error)
 
 
-#a.create_htmls_validated()  # empacando aqui!
+# a.create_htmls_validated()  # empacando aqui!
