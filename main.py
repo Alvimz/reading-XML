@@ -123,8 +123,8 @@ a = Logic()
 
 a.get_paths_xml_lib_html()  # pegar os paths
 
-# a.generate_html_path()
-# a.create_path_html()
+a.generate_html_path()
+a.create_path_html()
 # a.get_line_from_xml()  # pega as linhas do xml!
 # a.check_if_its_url()
 # ---------
