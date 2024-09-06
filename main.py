@@ -34,18 +34,9 @@ class Logic:
         self.links_error = []  # lista com os links errôneos
         self.supose_path_xml = None  # path do xml!
         self.supose_path_lib = None  # path lib!
-        self.pasta_name = (
-            "Resultado_xml"  # nome da pasta que será criada para armazenar o output!
-        )
+        self.path_html_output = None #cria o path do output!
 
-        self.path_html_output = None  # path da pasta do output html
-
-    def create_path_html(self):  # cria a pasta para receber os html #🔴apagar esse carinha!
-        if (not Verifications.this_file_exists(self.path_html_output) and self.supose_path_lib):
-            os.makedirs(self.path_html_output)
-            print("Pasta criada com sucesso!")
-        else:
-            print("Pasta para os registros já existe!")
+ 
 
     def get_paths_xml_lib_html(self):  # pega os diretórios para executa-los!
         supose_path_xml = input("Digite o diretório do arquivo XML[até 10mb]: ")
@@ -58,8 +49,10 @@ class Logic:
             supose_path_lib = input("Digite agora onde deseja salvar a pasta de retorno do xml:")
             if not Verifications.empty_input(supose_path_lib) and Verifications.this_path_works(supose_path_lib):
                 print("Tudo certo!")
+                self.path_html_output = Paths.generate_html_path(supose_path_lib)  #gera o path para output!
+                Paths.create_path_html(supose_path_lib) #cria a pasta do output!
                 self.supose_path_lib = supose_path_lib
-                return self.supose_path_xml, self.supose_path_lib
+                return self.supose_path_xml, self.supose_path_lib,self.path_html_output
             else:
                 print('Tem coisa errada aí!')
         else:
@@ -79,7 +72,7 @@ class Logic:
 
         return self.links_raw  # retornando em lista com os valores
 
-    def check_if_its_url(
+    def check_url_get(
         self,
     ):  # verifica se o link funciona , dividindo entre os funcionais e os não funcionais!
         for links in self.links_raw:
@@ -91,12 +84,9 @@ class Logic:
         print("Links testados e verificados!")
         return self.links_error, self.links_validated
 
-    # cria a path para geração dos html!
-    def generate_html_path(self):
-        self.path_html_output = f"{self.supose_path_lib}/{self.pasta_name}"  # alterar para join futuramente!🟨
-        return self.path_html_output
+  
 
-    def create_htmls_validated(self):  # cria os html verificados!
+    def create_htmls(self):  # cria os html verificados!
         pattern_link = r'[<>:"/\\|?*\x00-\x1F]'
         for links in self.links_validated:
             file_name = re.sub(pattern_link, "_", links[7:])
@@ -120,10 +110,10 @@ a = Logic()
 
 a.get_paths_xml_lib_html()  # pegar os paths
 
-a.generate_html_path()
-a.create_path_html()
-# a.get_line_from_xml()  # pega as linhas do xml!
-# a.check_if_its_url()
+
+a.get_line_from_xml()  # pega as linhas do xml!
+a.check_url_get()
+a.create_htmls()
 # ---------
 # print(a.links_validated)
 # print(a.links_error)

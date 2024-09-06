@@ -1,8 +1,8 @@
 from verification import Verifications
 import os
 class Paths:
-    def __init__(self) -> None:
-        self.path_html_output = None
+    
+    
         
     @staticmethod    
     def create_path_html(path):  # cria a pasta para receber os html
@@ -12,9 +12,9 @@ class Paths:
             
         else:
             print("Pasta para os registros já existe!")
-            
-    def generate_html_path(self,path_lib):
+           
+    def generate_html_path(path_lib):
         pasta_nome = "Resultado_xml"
-        self.path_html_output=os.path.join(path_lib,pasta_nome)
-          # alterar para join futuramente!🟨
-        return self.path_html_output
+        path_html_output=os.path.join(path_lib,pasta_nome)
+        print('Link de output criado com sucesso!')
+        return path_html_output
