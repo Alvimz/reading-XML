@@ -1,5 +1,5 @@
 import os
-
+import re
 class verifications:
         @staticmethod
         def file_size(path_xml):
@@ -22,4 +22,11 @@ class verifications:
         def this_file_exists(file):
             if os.path.exists(file):
                 return True
+        @staticmethod
+        def this_a_path(path):
+            pattern_path = r"^([a-zA-Z]:\\|\/)?((?:[^<>:\"\/\\|?*\n]+[\/\\]?)+)$"
+
+            if re.match(pattern_path,path):
+                return True
+            print('Insira um diretório!')
             
