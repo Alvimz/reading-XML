@@ -17,7 +17,7 @@ from verification import verifications
      
 #distribui os links em htmls
     #criação da pasta para inserção dos htmls!✔️
-    #criação arquivo htmls com o resultado do get!❌
+    #criação arquivo htmls com o resultado do get!✔️
     #criação arquivo htmls verificados/errôneos! ✔️/❌
 #inputs
     #verifica se o que o cara digitou é vazio✔️
@@ -50,16 +50,16 @@ class Logic:
 
     def get_paths_xml_lib_html(self):  # pega os diretórios para executa-los!
         self.supose_path_xml = input("Digite o diretório do arquivo XML: ")
-        if verifications.file_size(self.supose_path_xml):
+        if verifications.file_size(self.supose_path_xml) and verifications.this_a_path(self.supose_path_xml):
             
         
             
             if self.supose_path_xml.endswith(".xml") and not verifications.empty_input(self.supose_path_xml):
                 self.supose_path_lib = input("Digite agora onde deseja salvar a pasta de retorno do xml:")
-                if not verifications.empty_input(self.supose_path_lib):
+                if not verifications.empty_input(self.supose_path_lib) and verifications.this_a_path(self.supose_path_lib):
                     return self.supose_path_xml, self.supose_path_lib
                 else:
-                    print('Por favor, insira um diretório!')
+                    ...
                     
             else:
                 print('Por favor, insira um arquivo XML!')

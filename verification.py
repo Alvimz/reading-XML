@@ -22,6 +22,7 @@ class verifications:
         def this_file_exists(file):
             if os.path.exists(file):
                 return True
+            
         @staticmethod
         def this_a_path(path):
             pattern_path = r"^([a-zA-Z]:\\|\/)?((?:[^<>:\"\/\\|?*\n]+[\/\\]?)+)$"
