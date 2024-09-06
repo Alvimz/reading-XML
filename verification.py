@@ -1,6 +1,6 @@
 import os
 import re
-class verifications:
+class Verifications:
         @staticmethod
         def file_size(path_xml):
             
@@ -24,8 +24,9 @@ class verifications:
                 return True
             
         @staticmethod
-        def this_a_path(path):
-            pattern_path = r"^([a-zA-Z]:\\|\/)?((?:[^<>:\"\/\\|?*\n]+[\/\\]?)+)$"
+        def this_path_works(path):
+            pattern_path = r"^[a-zA-Z]:(\\|\/)[^<>:\"\/\\|?*\n]+(\\|\/)[^<>:\"\/\\|?*\n]+$"
+
 
             if re.match(pattern_path,path):
                 return True
@@ -36,5 +37,4 @@ class verifications:
             pattern_url = r"https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+(\.[a-zA-Z]{2,})(?:/.*)?"
             if re.match(pattern_url,url):
                 return True
-            
             
