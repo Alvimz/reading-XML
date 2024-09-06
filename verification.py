@@ -1,5 +1,6 @@
 import os
 import re
+import requests
 class Verifications:
         @staticmethod
         def file_size(path_xml):
@@ -38,3 +39,11 @@ class Verifications:
             if re.match(pattern_url,url):
                 return True
             
+        @staticmethod
+        def get_links(link):
+            try:
+                
+                requests.get(link)
+                return True
+            except:
+                return False
