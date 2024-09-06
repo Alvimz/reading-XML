@@ -49,8 +49,10 @@ class Logic:
             supose_path_lib = input("Digite agora onde deseja salvar a pasta de retorno do xml:")
             if not Verifications.empty_input(supose_path_lib) and Verifications.this_path_works(supose_path_lib):
                 print("Tudo certo!")
-                self.path_html_output = Paths.generate_html_path(supose_path_lib)  #gera o path para output!
-                Paths.create_path_html(supose_path_lib) #cria a pasta do output!
+                self.path_html_output = Lib_html = Paths.generate_html_path(supose_path_lib)  #gera o path para output! 
+                Paths.create_lib_html(Lib_html) #cria a pasta do output! 
+                
+                
                 self.supose_path_lib = supose_path_lib
                 return self.supose_path_xml, self.supose_path_lib,self.path_html_output
             else:
@@ -111,12 +113,7 @@ a = Logic()
 a.get_paths_xml_lib_html()  # pegar os paths
 
 
-a.get_line_from_xml()  # pega as linhas do xml!
-a.check_url_get()
-a.create_htmls()
-# ---------
-# print(a.links_validated)
-# print(a.links_error)
+#a.get_line_from_xml()  # pega as linhas do xml!
+#a.check_url_get()
+#a.create_htmls()
 
-
-# a.create_htmls_validated()  # empacando aqui!
