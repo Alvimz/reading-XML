@@ -1,13 +1,15 @@
 from verification import Verifications
 import os
 class Paths:
-    
+    def __init__(self) -> None:
+        self.path_html_output = None
         
     @staticmethod    
     def create_path_html(path):  # cria a pasta para receber os html
         if not Verifications.this_file_exists(path):
             os.makedirs(path)
             print("Pasta criada com sucesso!")
+            
         else:
             print("Pasta para os registros já existe!")
             

@@ -4,7 +4,7 @@ import requests
 import re
 import os
 from verification import Verifications
-
+from generators_paths import Paths
 """
 
 #recebedor de arquivo!
@@ -40,11 +40,8 @@ class Logic:
 
         self.path_html_output = None  # path da pasta do output html
 
-    def create_path_html(self):  # cria a pasta para receber os html
-        if (
-            not Verifications.this_file_exists(self.path_html_output)
-            and self.supose_path_lib
-        ):
+    def create_path_html(self):  # cria a pasta para receber os html #🔴apagar esse carinha!
+        if (not Verifications.this_file_exists(self.path_html_output) and self.supose_path_lib):
             os.makedirs(self.path_html_output)
             print("Pasta criada com sucesso!")
         else:
