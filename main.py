@@ -81,13 +81,11 @@ class Logic:
 
         return self.links_raw  # retornando em lista com os valores
 
-    def check_if_its_url(
-        self,
-    ):  # verifica se o link funciona , dividindo entre os funcionais e os não funcionais!
-        pattern_url = r"https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+(\.[a-zA-Z]{2,})(?:/.*)?"
+    def check_if_its_url(self):  # verifica se o link funciona , dividindo entre os funcionais e os não funcionais!
+        
 
         for links in self.links_raw:
-            if re.match(pattern_url, links):
+            if verifications.this_urls_works(links):
                 self.links_validated.append(links)
 
             else:
