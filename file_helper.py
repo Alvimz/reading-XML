@@ -18,8 +18,3 @@ class FileHelper(object):
             file_content = file.read()
             xml_content = etree.fromstring(file_content)
         return xml_content
-
-
-    @classmethod
-    def check_file_exit_with_cls_instance(cls, file_path):
-        pass

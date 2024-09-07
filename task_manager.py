@@ -1,4 +1,7 @@
 from file_helper import FileHelper
+from report import Report
+from request_result import RequestResult, RequestResultList
+from http_helper import HTTPHelper
 
 class TaskManager(object):
     def __init__(self) -> None:
@@ -11,10 +14,8 @@ class TaskManager(object):
 
     @file_path.setter
     def file_path(self, value):
-        # Verification
         FileHelper.check_file_exist(value)
         self._file_path = value
-
 
     @property
     def http_request_limit(self):
@@ -28,9 +29,17 @@ class TaskManager(object):
     def start(self):
         file_content = FileHelper.get_xml_content(self.file_path)
         urls = file_content.findall("site")
+        report = Report()
+        print("---------------------------")
+        print("Processing requests...")
+        print("---------------------------")
         for url in urls:
-            print (url.text)
+            print(".")
+            report.add_item(HTTPHelper.get_url_content(url.text))
+        print("---------------------------")
+        print("DONE - Processing requests.")
+        print("---------------------------")
+        report.print()
+        
 
-
-    def get_url_content(url):
-        pass
+    
