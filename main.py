@@ -63,6 +63,7 @@ class Logic:
     def get_line_from_xml(
         self,
     ):  # pega linha por linha do xml e armazena na lista 'links_raw'
+        
         with open(self.supose_path_xml, "r") as file:
             line = file.read()
         content = BeautifulSoup(line, "xml")
