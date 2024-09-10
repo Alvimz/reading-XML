@@ -13,7 +13,7 @@ class HTTPHelper(object):
 
     @staticmethod
     def is_valid_url(url):
-        return validators.url(url)
+        return validators.url(url) #legal esse carinha aqui, além de ser 🤏!
     
     @staticmethod
     def get_url_content(url) -> RequestResult:

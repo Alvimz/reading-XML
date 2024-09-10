@@ -1,12 +1,12 @@
 from request_result import RequestResult, RequestResultList
 
-
+#pesquisar melhor isso pq não entendi! 🟥🟥🟥🟥
 class Report(object):
 
     def __init__(self) -> None:
         self.__report = list()
     
-    def add_item(self, rr: RequestResult):
+    def add_item(self, rr: RequestResult): #especificando que a lista recebe valores do ResultRequest(data)!
         self.__report.append(rr)
 
     def add_items(self, RequestResultList):

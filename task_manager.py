@@ -8,7 +8,7 @@ class TaskManager(object):
         self._file_path = None
         self._http_request_limit = 0
 
-    @property
+    @property #setando 'file_path' como privado! para utiliza-lo pelo set!
     def file_path(self):
         return self._file_path
 
@@ -27,15 +27,15 @@ class TaskManager(object):
 
 
     def start(self):
-        file_content = FileHelper.get_xml_content(self.file_path)
+        file_content = FileHelper.get_xml_content(self.file_path) #pq não pode ser o privado???
         urls = file_content.findall("site")
-        report = Report()
+        report = Report() #confirmar isto! 
         print("---------------------------")
         print("Processing requests...")
         print("---------------------------")
         for url in urls:
             print(".")
-            report.add_item(HTTPHelper.get_url_content(url.text))
+            report.add_item(HTTPHelper.get_url_content(url.text)) 
         print("---------------------------")
         print("DONE - Processing requests.")
         print("---------------------------")
