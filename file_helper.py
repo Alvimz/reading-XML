@@ -20,8 +20,14 @@ class FileHelper(object):
             xml_content = etree.fromstring(file_content)
         return xml_content
     
-    @staticmethod
+   
     def create_folder_output(path)-> None:
+        
+        return os.makedirs(path,exist_ok=True)
+      
+    
+    def create_path_output(path):
         folder_name = 'output_xml'
-        os.makedirs(path,folder_name,exist_ok=True)
+        return os.path.join(path,folder_name)
+        
         
