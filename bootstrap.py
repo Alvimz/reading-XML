@@ -7,7 +7,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process file requests')
     parser.add_argument('file_path', type=str, help="Must be a valid xml file")
     parser.add_argument('limit', type=int, help='Limit the number of requests')
-    args = parser.parse_args() #recebe os valores recebidos do 'add_argument' e os converte em um objeto!
+    args = parser.parse_args(('./urls.xml','1')) #recebe os valores recebidos do 'add_argument' e os converte em um objeto!
 
     
     my_instance_class = task_manager.TaskManager() 
@@ -32,3 +32,16 @@ if __name__ == "__main__":
 
 """
 
+
+"""
+Coisas a fazer:
+    - Criação da pasta para output! ❌
+    - Ver se o link funciona ou não!❌
+    - Output em arquivo html! ❌
+        - Pegar o diretório da pasta:❌
+            Verificação de criação! ❌
+            -Criar arquivos html:❌
+                Tratamento no nome do arquivo! ✔️
+    - 
+
+"""
