@@ -5,6 +5,7 @@ class FileHelper(object):
 
     def __init__(self) -> None:
         self._test = "Rene"
+        
 
     @staticmethod
     def check_file_exist(file_path: str) -> None:
@@ -18,3 +19,9 @@ class FileHelper(object):
             file_content = file.read()
             xml_content = etree.fromstring(file_content)
         return xml_content
+    
+    @staticmethod
+    def create_folder_output(path)-> None:
+        folder_name = 'output_xml'
+        os.makedirs(path,folder_name,exist_ok=True)
+        
