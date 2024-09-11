@@ -7,7 +7,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process file requests')
     parser.add_argument('file_path', type=str, help="Must be a valid xml file")
     parser.add_argument('limit', type=int, help='Limit the number of requests')
-    args = parser.parse_args(('./urls.xml','1')) #recebe os valores recebidos do 'add_argument' e os converte em um objeto!
+    parser.add_argument('output_path',type=str,help='Must be a valid path')
+    args = parser.parse_args(('./urls.xml','1','.')) #recebe os valores recebidos do 'add_argument' e os converte em um objeto!
 
     
     my_instance_class = task_manager.TaskManager() 
