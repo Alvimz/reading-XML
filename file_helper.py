@@ -6,6 +6,7 @@ class FileHelper(object):
     def __init__(self) -> None:
         self._test = "Rene"
         
+        
 
     @staticmethod
     def check_file_exist(file_path: str) -> None:
@@ -20,14 +21,19 @@ class FileHelper(object):
             xml_content = etree.fromstring(file_content)
         return xml_content
     
-    @staticmethod
-    def create_folder_output(path)-> None:
-        os.makedirs(path,exist_ok=True)
+
+          
+        
+        
         
       
-    
-    def create_path_output(path):
+    @staticmethod
+    def create_folder_output(path):
         folder_name = 'output_xml'
-        return os.path.join(path,folder_name)
+        html_final_output = os.path.join(path,folder_name)
+        print('Consegui criar a pasta para output!')
+        os.makedirs(html_final_output,exist_ok=True)
+        return html_final_output
         
-        
+# a= FileHelper
+# a.create_folder_output(r'D:\OneBItCODE\reading-xml')

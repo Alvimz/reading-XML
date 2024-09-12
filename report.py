@@ -1,10 +1,13 @@
 from request_result import RequestResult, RequestResultList
+import os
 
-#pesquisar melhor isso pq não entendi! 🟥🟥🟥🟥
+
 class Report(object):
 
     def __init__(self) -> None:
         self.__report = list()
+        
+        
     
     def add_item(self, rr: RequestResult): #especificando que a lista recebe valores do ResultRequest(data)!
         self.__report.append(rr)
@@ -17,11 +20,12 @@ class Report(object):
         for result in  self.__report:
             print("Worked? %s/t URL: %s " % (result.success, result.url ))
 
-    def save(self):
+    def save(self,path):
         
         for i,obj in enumerate(self.__report):
-            file_name = f'Resultado{i+1}.html' 
-            with open(file_name,'w') as f:
+            file_name = f'Resultado{i+1}.html'
+            final_output_html = os.path.join(path,file_name)
+            with open(final_output_html,'w') as f:
                 
                 
                 f.write('<html>\n')
