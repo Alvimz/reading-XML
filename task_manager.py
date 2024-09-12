@@ -31,8 +31,9 @@ class TaskManager(object):
     def output_path(self):
         return self._output_path
     
-    @output_path.getter
-    def output_path(self):
+    @output_path.setter
+    def output_path(self,value):
+        self._output_path = value
         ...
 #---------------
 
