@@ -2,6 +2,7 @@ from file_helper import FileHelper
 from report import Report
 from request_result import RequestResult, RequestResultList
 from http_helper import HTTPHelper
+import threading
 
 class TaskManager(object):
     def __init__(self) -> None:
@@ -11,11 +12,11 @@ class TaskManager(object):
         self.final_html = None
         
 
-    @property #setando 'file_path' como privado! para utiliza-lo pelo set!
+    @property #getter
     def file_path(self):
         return self._file_path
 
-    @file_path.setter
+    @file_path.setter #setter
     def file_path(self, value):
         FileHelper.check_file_exist(value)
         self._file_path = value
@@ -46,7 +47,7 @@ class TaskManager(object):
 
     def start(self):
         file_content = FileHelper.get_xml_content(self.file_path) #pq não pode ser o privado???
-        urls = file_content.findall("site")
+        urls = file_content.findall("site") #isto continua
         report = Report()  
         
         print("---------------------------")
@@ -54,13 +55,13 @@ class TaskManager(object):
         print("---------------------------")
         for url in urls:
             print(".")
-            report.add_item(HTTPHelper.get_url_content(url.text))
-             
+            threading_get = threading.Thread(target=lambda:report.add_item(HTTPHelper.get_url_content(url.text)))
+            threading_get.start()
         print("---------------------------")
         print("DONE - Processing requests.")
         print("---------------------------")
         report.print()
-        
+        threading_get.join()
         report.save(self.final_html)
         
 

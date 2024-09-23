@@ -1,5 +1,6 @@
 import os
 from lxml import etree
+import threading
 
 class FileHelper(object):
 
@@ -35,5 +36,3 @@ class FileHelper(object):
         os.makedirs(html_final_output,exist_ok=True)
         return html_final_output
         
-# a= FileHelper
-# a.create_folder_output(r'D:\OneBItCODE\reading-xml')

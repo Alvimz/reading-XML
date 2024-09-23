@@ -1,14 +1,14 @@
 import argparse
 import task_manager
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     print("Test")
 
     parser = argparse.ArgumentParser(description='Process file requests')
     parser.add_argument('file_path', type=str, help="Must be a valid xml file")
     parser.add_argument('limit', type=int, help='Limit the number of requests')
     parser.add_argument('output_path',type=str,help='Must be a valid path')
-    args = parser.parse_args(('./url_curto.xml','1',r'D:\OneBItCODE\reading-xml')) #recebe os valores recebidos do 'add_argument' e os converte em um objeto!
+    args = parser.parse_args(('INSERIR OS TREM AQUI!')) #recebe os valores recebidos do 'add_argument' e os converte em um objeto!
 
     
     my_instance_class = task_manager.TaskManager() 
