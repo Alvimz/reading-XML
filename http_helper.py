@@ -2,11 +2,11 @@ import requests
 import validators
 import time
 from request_result import RequestResult
+from time_passed import TimePassed
 
 class HTTPHelper(object):
 
-    @staticmethod
-    def get_url(url) -> str:
+    def get_url(self,url) -> str:
         start_time = time.time()
         httpResponse = requests.get(url, timeout=3)
         elapsed_time = time.time() - start_time
@@ -24,12 +24,14 @@ class HTTPHelper(object):
         rr = RequestResult()
         rr.success = True
         rr.url = url
+        rr.response_time = 0
         try:
             if not HTTPHelper.is_valid_url(url):
                 rr.success = False
                 rr.error_message = "URL is not valid"
             else:
                 rr.data = HTTPHelper.get_url(url)
+                
 
         except Exception as ex:
             rr.success = False
