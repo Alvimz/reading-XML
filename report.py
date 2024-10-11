@@ -8,7 +8,7 @@ class Report(object):
         self.__report:List[RequestResult] = list()
         
         
-    def add_item(self, rr: RequestResult): #especificando que a lista recebe valores do ResultRequest(data)!
+    def add_item(self, rr: RequestResult):
         self.__report.append(rr)
 
     def add_items(self, RequestResultList):
@@ -29,7 +29,8 @@ class Report(object):
                 f.write('<head>\n<title>Resultados</title>\n</head>\n')
                 f.write('<body>\n')
                 f.write(f'<h1>Relatório do link: {obj.url}</h1>\n')
-                
+                f.write(f'<p>Time to process: {obj.response_time}</p>\n')
+
                 f.write(f'<p>Sucesso?: {obj.success}</p>\n')
                 f.write('</body>\n')
                 f.write('</html>')
