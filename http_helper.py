@@ -18,10 +18,10 @@ class HTTPHelper(object):
     
     @staticmethod
     def get_url_content(url) -> RequestResult:
+        timer = TimePassed()
         rr = RequestResult()
         rr.success = True
         rr.url = url
-        timer = TimePassed()
         rr.response_time = 0
         
         try:

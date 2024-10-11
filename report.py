@@ -28,10 +28,10 @@ class Report(object):
                 f.write('<html>\n')
                 f.write('<head>\n<title>Resultados</title>\n</head>\n')
                 f.write('<body>\n')
-                f.write(f'<h1>Relatório do link: {obj.url}</h1>\n')
+                f.write(f'<h1>Link: {obj.url}</h1>\n')
                 f.write(f'<p>Time to process: {obj.response_time}</p>\n')
 
-                f.write(f'<p>Sucesso?: {obj.success}</p>\n')
+                f.write(f'<p>Success?: {obj.success}</p>\n')
                 f.write('</body>\n')
                 f.write('</html>')
                   
