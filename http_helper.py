@@ -5,8 +5,8 @@ from request_result import RequestResult
 from time_passed import TimePassed
 
 class HTTPHelper(object):
-
-    def get_url(self,url) -> str:
+    @staticmethod
+    def get_url(url) -> str:
         start_time = time.time()
         httpResponse = requests.get(url, timeout=3)
         elapsed_time = time.time() - start_time

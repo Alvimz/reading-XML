@@ -22,11 +22,6 @@ class FileHelper(object):
             xml_content = etree.fromstring(file_content)
         return xml_content
     
-
-          
-        
-        
-        
       
     @staticmethod
     def create_folder_output(path):
