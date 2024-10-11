@@ -32,5 +32,13 @@ class RequestResult(object):
     def url(self, value: str):
         self._url = value
 
+    @property
+    def response_time(self)->float:
+        return self._response_time
+    
+    @response_time.setter
+    def response_time(self,value:float):
+        self._response_time = value
+  
 class RequestResultList(list):
     pass
