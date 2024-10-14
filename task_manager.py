@@ -53,16 +53,14 @@ class TaskManager(object):
         print("---------------------------")
         print("Processing requests...")
         print("---------------------------")
-        for url in urls:
+        for url in urls: #mudar esta estrutura ✋
             print(".")
-            threading_get = threading.Thread(target=lambda:report.add_item(HTTPHelper.get_url_content(url.text)))
-            threading_get.start()
+            report.add_item(HTTPHelper.get_url_content(url.text))
+            
         print("---------------------------")
         print("DONE - Processing requests.")
         print("---------------------------")
         report.print()
-        threading_get.join()
         report.save(self.final_html)
         
 
-    
