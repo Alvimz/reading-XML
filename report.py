@@ -8,7 +8,8 @@ class Report(object):
         self.__report:List[RequestResult] = list()
         
         
-    def add_item(self, rr: RequestResult):
+    def add_item(self, rr: RequestResult,time):
+        rr.response_time=time
         self.__report.append(rr)
 
     def add_items(self, RequestResultList):
@@ -30,7 +31,6 @@ class Report(object):
                 f.write('<body>\n')
                 f.write(f'<h1>Link: {obj.url}</h1>\n')
                 f.write(f'<p>Time to process: {obj.response_time}</p>\n')
-
                 f.write(f'<p>Success?: {obj.success}</p>\n')
                 f.write('</body>\n')
                 f.write('</html>')

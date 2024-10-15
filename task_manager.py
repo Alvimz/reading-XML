@@ -2,8 +2,7 @@ from file_helper import FileHelper
 from report import Report
 from request_result import RequestResult, RequestResultList
 from http_helper import HTTPHelper
-import threading
-
+from time_passed import TimePassed
 class TaskManager(object):
     def __init__(self) -> None:
         self._file_path = None
@@ -46,16 +45,17 @@ class TaskManager(object):
 #---------------
 
     def start(self):
-        file_content = FileHelper.get_xml_content(self.file_path) #pq não pode ser o privado???
-        urls = file_content.findall("site") #isto continua
-        report = Report()  
-        
+        file_content = FileHelper.get_xml_content(self.file_path) 
+        urls = file_content.findall("site")
+        report = Report()
+        timer = TimePassed()
         print("---------------------------")
         print("Processing requests...")
         print("---------------------------")
         for url in urls: #mudar esta estrutura ✋
             print(".")
-            report.add_item(HTTPHelper.get_url_content(url.text))
+            time_process,content_url = timer.define_time_set(lambda:HTTPHelper.get_url_content(url.text))
+            report.add_item(content_url,time_process)
             
         print("---------------------------")
         print("DONE - Processing requests.")

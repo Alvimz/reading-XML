@@ -1,10 +1,10 @@
 import time
 
 class TimePassed:
-    def define_time_set(self,action)->str:
+    def define_time_set(self,action):
         start_time= time.time()
-        action()
+        result =action()
         elapsed_time = time.time() - start_time
-        return f'{elapsed_time:.3f}'
+        return f'{elapsed_time:.3f}',result
     
 

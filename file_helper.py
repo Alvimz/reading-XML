@@ -1,6 +1,5 @@
 import os
 from lxml import etree
-import threading
 
 class FileHelper(object):
 
