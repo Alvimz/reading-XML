@@ -28,7 +28,6 @@ class TaskManager(object):
     def http_request_limit(self, value):
         self._http_request_limit = value
 
-#----------------
     @property
     def output_path(self):
         return self._output_path
@@ -39,10 +38,6 @@ class TaskManager(object):
         self._output_path = value
         self.final_html = FileHelper.create_folder_output(value) #aqui está vindo None!
         
-        
-        
-        
-#---------------
 
     def start(self):
         file_content = FileHelper.get_xml_content(self.file_path) 
@@ -56,7 +51,6 @@ class TaskManager(object):
             print(".")
             time_process,content_url = timer.define_time_set(lambda:HTTPHelper.get_url_content(url.text))
             report.add_item(content_url,time_process)
-            
         print("---------------------------")
         print("DONE - Processing requests.")
         print("---------------------------")
