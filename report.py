@@ -9,6 +9,7 @@ class Report(object):
         
         
     def add_item(self, rr: RequestResult):
+        rr.processed = False
         self.__report.append(rr)
 
     def add_items(self, RequestResultList):
@@ -33,4 +34,4 @@ class Report(object):
                 f.write(f'<p>Success?: {obj.success}</p>\n')
                 f.write('</body>\n')
                 f.write('</html>')
-                  
+            obj.processed = True
