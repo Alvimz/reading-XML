@@ -40,12 +40,12 @@ class RequestResult(object):
     def response_time(self,value:float):
         self._response_time = value
     
-    @property
-    def processed(self):
-        return self.processed 
-    @processed.setter
-    def processed(self,value):
-        self.value = value
+    # @property
+    # def processed(self):
+    #     return self.processed 
+    # @processed.setter
+    # def processed(self,value):
+    #     self.value = value
     
 class RequestResultList(list):
     pass
