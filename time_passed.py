@@ -5,6 +5,6 @@ class TimePassed:
         start_time= time.time()
         action()
         elapsed_time = time.time() - start_time
-        return f'{elapsed_time:.3f}'
+        return elapsed_time
     
 
