@@ -8,8 +8,7 @@ class Report(object):
         self.__report:List[RequestResult] = list()
         
         
-    def add_item(self, rr: RequestResult,time):
-        rr.response_time=time
+    def add_item(self, rr: RequestResult):
         self.__report.append(rr)
 
     def add_items(self, RequestResultList):

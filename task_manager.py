@@ -34,23 +34,21 @@ class TaskManager(object):
     
     @output_path.setter
     def output_path(self,value):
-        
         self._output_path = value
-        self.final_html = FileHelper.create_folder_output(value) #aqui está vindo None!
+        self.final_html = FileHelper.create_folder_output(value) 
         
 
     def start(self):
         file_content = FileHelper.get_xml_content(self.file_path) 
         urls = file_content.findall("site")
         report = Report()
-        timer = TimePassed()
         print("---------------------------")
         print("Processing requests...")
         print("---------------------------")
         for url in urls: #mudar esta estrutura ✋
             print(".")
-            time_process,content_url = timer.define_time_set(lambda:HTTPHelper.get_url_content(url.text))
-            report.add_item(content_url,time_process)
+            content_url = HTTPHelper.get_url_content(url.text)
+            report.add_item(content_url)
         print("---------------------------")
         print("DONE - Processing requests.")
         print("---------------------------")
