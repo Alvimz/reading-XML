@@ -3,6 +3,7 @@ from report import Report
 from request_result import RequestResult, RequestResultList
 from http_helper import HTTPHelper
 from time_passed import TimePassed
+from poolrequest import PoolRequest
 class TaskManager(object):
     def __init__(self) -> None:
         self._file_path = None
@@ -42,17 +43,25 @@ class TaskManager(object):
         file_content = FileHelper.get_xml_content(self.file_path) 
         urls = file_content.findall("site")
         report = Report()
+        pool = PoolRequest()
         print("---------------------------")
         print("Processing requests...")
         print("---------------------------")
-        for url in urls: #mudar esta estrutura ✋
-            print(".")
-            content_url = HTTPHelper.get_url_content(url.text)
+        
+        def process_url(urls_process):
+            content_url = HTTPHelper.get_url_content(urls_process)
             report.add_item(content_url)
+                
+        for url in urls:
+            pool.run(process_url,url.text)
+        pool.wait_4_complete()
+        pool.shutdown()
+        
         print("---------------------------")
         print("DONE - Processing requests.")
         print("---------------------------")
         report.print()
-        report.save(self.final_html)
+        report.save()
+        
         
 

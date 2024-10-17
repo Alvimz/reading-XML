@@ -1,8 +1,8 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-class MaybeThreads:
+class PoolRequest:
     def __init__(self):
-        self.exec = ThreadPoolExecutor(max_workers=5)
+        self.exec = ThreadPoolExecutor(max_workers=3)
         self._threads = list()
 
     def run(self, func, *args):
