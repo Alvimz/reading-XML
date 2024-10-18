@@ -1,6 +1,7 @@
 from request_result import RequestResult, RequestResultList
 import os
 from typing import List
+from xlsx_manager import XlsxManager
 
 class Report(object):
 
@@ -9,7 +10,6 @@ class Report(object):
         
         
     def add_item(self, rr: RequestResult):
-        rr.processed = False
         self.__report.append(rr)
 
     def add_items(self, RequestResultList):
@@ -21,9 +21,11 @@ class Report(object):
             print("Worked? %s/t URL: %s " % (result.success, result.url ))
 
     def save(self)->str:
+        xls_mang = XlsxManager()
         time_list=list()
         for obj in self.__report:
             if obj.response_time !=0:
                 time_list.append(obj.response_time)
         avg = sum(time_list)/len(time_list)
+        xls_mang.save_to_log(f'{avg:.3f}')
         print(f'Average time: {avg:.3f}')        
