@@ -2,7 +2,7 @@ import os
 from xlsx_manager import XlsxManager
 class TemporaryLog:
     def __init__(self) -> None:
-        self.create_file_temporary
+        self.create_file_temporary()
         self.avg_qnt = 10
         self.raw_numbers = list()
         
@@ -36,14 +36,16 @@ class TemporaryLog:
             for line in f:
                 line_number = float(line.strip())
                 self.raw_numbers.append(line_number)
-            return self.raw_numbers
+        return self.raw_numbers
         
         
                 
                 
     
-                
-a = TemporaryLog()
+if __name__ == '__main__':                
+    a = TemporaryLog()
+    a.get_numbers()
+    print(len(a.raw_numbers))
 
 
         
