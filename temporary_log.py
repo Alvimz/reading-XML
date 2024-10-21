@@ -10,8 +10,8 @@ class TemporaryLog:
         if not os.path.exists('log_temporary.txt'):
             with open('log_temporary.txt','w') as f:
                 f.close()
-    
-    def write_log(self,time:float):
+    @staticmethod
+    def write_log(time:float):
         with open('log_temporary.txt','a') as f:
             f.write(f'{time}\n')
             
@@ -19,24 +19,23 @@ class TemporaryLog:
         xls_manager = XlsxManager()
         with open('log_temporary.txt','r') as f:
             for linha in f:
-                self.logs.append(linha)
-            if len(self.logs) == self.avg_qnt:
-                avg = self.average_numbers(self.logs)
-                xls_manager.save_to_log(avg)
-                self.clear_temporary_log()
+                self.logs.append(linha.strip())
+            avg = self.average_numbers(self.logs)
+            xls_manager.save_to_log(avg)
+            self.clear_temporary_log()
                 
                 
     def average_numbers(self,list_numbers):
         avg = sum(list_numbers)/self.avg_qnt
         return avg
 
-    def clear_temporary_log(self):
+    @staticmethod
+    def clear_temporary_log():
         if os.path.exists('log_temporary.txt'):
             with open('log_temporary.txt', 'w') as f:
                 f.write('')
                 
 a = TemporaryLog()
-a.create_file_temporary()
 
 
         
