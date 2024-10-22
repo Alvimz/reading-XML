@@ -1,8 +1,7 @@
 from request_result import RequestResult, RequestResultList
 import os
 from typing import List
-from xlsx_manager import XlsxManager
-
+from temporary_log import TemporaryLog
 class Report(object):
 
     def __init__(self) -> None:
@@ -20,12 +19,11 @@ class Report(object):
         for result in  self.__report:
             print("Worked? %s/t URL: %s " % (result.success, result.url ))
 
-    def save(self)->str:
-        xls_mang = XlsxManager()
-        time_list=list()
+    def save(self):
+        temporary_log = TemporaryLog()
         for obj in self.__report:
             if obj.response_time !=0:
-                time_list.append(obj.response_time)
-        avg = sum(time_list)/len(time_list)
-        xls_mang.save_to_log(f'{avg:.3f}')
-        print(f'Average time: {avg:.3f}')        
+                temporary_log.get_numbers_report(obj.response_time)
+        temporary_log.average_report()
+        temporary_log.save_csv_log()
+              

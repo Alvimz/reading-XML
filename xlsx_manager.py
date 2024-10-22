@@ -12,7 +12,6 @@ class XlsxManager:
         while sheet[f'A{next_row}'].value is not None:
             next_row += 1
 
-        # Preenche a data e o tempo médio
         sheet[f'A{next_row}'] = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
         sheet[f'B{next_row}'] = avg_time
         workbook.save('log.xlsx')
