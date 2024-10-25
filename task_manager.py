@@ -29,14 +29,7 @@ class TaskManager(object):
     def http_request_limit(self, value):
         self._http_request_limit = value
 
-    @property
-    def output_path(self):
-        return self._output_path
     
-    @output_path.setter
-    def output_path(self,value):
-        self._output_path = value
-        self.final_html = FileHelper.create_folder_output(value) 
         
 
     def start(self):
