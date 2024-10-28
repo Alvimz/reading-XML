@@ -6,6 +6,7 @@ from time_passed import TimePassed
 
 class HTTPHelper(object):
     @staticmethod
+    @TimePassed
     def get_url(url) -> str:
         httpResponse = requests.get(url, timeout=3)
         
@@ -18,7 +19,6 @@ class HTTPHelper(object):
     
     @staticmethod
     def get_url_content(url) -> RequestResult:
-        timer = TimePassed() #tirar isto aqui! ✋
         rr = RequestResult()
         rr.success = True
         rr.url = url
@@ -29,9 +29,8 @@ class HTTPHelper(object):
                 rr.success = False
                 rr.error_message = "URL is not valid"
             else:
-                def fetch_url():
-                    rr.data = HTTPHelper.get_url(url)
-                rr.response_time = timer.define_time_set(fetch_url)
+                rr.data = HTTPHelper.get_url(url)
+                rr.response_time = HTTPHelper.get_url.execution_time
 
 
 
