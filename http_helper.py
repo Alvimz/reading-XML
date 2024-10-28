@@ -18,7 +18,7 @@ class HTTPHelper(object):
         return validators.url(url) 
     
     @staticmethod
-    def get_url_content(url) -> RequestResult:
+    def get_url_content_and_time(url) -> RequestResult:
         rr = RequestResult()
         rr.success = True
         rr.url = url
