@@ -21,12 +21,11 @@ class TemporaryLog:
                 f.write('')
             
     def save_csv_log(self):
-        if self.len_txt_log():
-            xls_manager = XlsxManager()
-            avg_numbers = self.avg_txt()
-        
-            xls_manager.save_to_log(avg_numbers)
-            self.clear_temporary_log()
+        print('Salvando no csv')
+        xls_manager = XlsxManager()
+        avg_numbers = self.avg_txt()
+        xls_manager.save_to_log(avg_numbers)
+        self.clear_temporary_log()
         
             
     #pega números do report!

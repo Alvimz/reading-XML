@@ -27,6 +27,6 @@ class Report(object):
             if obj.response_time !=0:
                 temporary_log.get_numbers_report(obj.response_time)
         temporary_log.avg_report()
+        self.__report.clear()
         aps.start(temporary_log.save_csv_log,2)
-        temporary_log.save_csv_log()
               

@@ -6,7 +6,7 @@ class Aps:
         self.scheduler = BackgroundScheduler()
     
     def start(self,func,minutes=1):
-        self.scheduler.add_job(func,'interval',minutes)
+        self.scheduler.add_job(func, trigger='interval', minutes=minutes, args=())
         self.scheduler.start()
         
     def stop(self):
