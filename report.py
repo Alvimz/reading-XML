@@ -7,6 +7,8 @@ class Report(object):
 
     def __init__(self) -> None:
         self.__report:List[RequestResult] = list()
+        self.temporary_log = TemporaryLog()
+
         
         
     def add_item(self, rr: RequestResult):
@@ -21,12 +23,14 @@ class Report(object):
             print("Worked? %s/t URL: %s " % (result.success, result.url ))
 
     def save(self):
-        temporary_log = TemporaryLog()
-        aps = Aps()
+        #aps = Aps()
         for obj in self.__report:
             if obj.response_time !=0:
-                temporary_log.get_numbers_report(obj.response_time)
-        temporary_log.avg_report()
+                self.temporary_log.get_numbers_report(obj.response_time)
+        self.temporary_log.avg_report()
         self.__report.clear()
-        aps.start(temporary_log.save_csv_log,2)
+        #aps.start(temporary_log.save_csv_log,2)
+    def write_log(self):
+        self.temporary_log.save_csv_log()
               
+    
