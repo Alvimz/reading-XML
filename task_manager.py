@@ -4,6 +4,7 @@ from request_result import RequestResult, RequestResultList
 from http_helper import HTTPHelper
 from time_passed import TimePassed
 from poolrequest import PoolRequest
+import keyboard
 class TaskManager(object):
     def __init__(self) -> None:
         self._file_path = None
@@ -44,17 +45,26 @@ class TaskManager(object):
         def process_url(urls_process):
             content_url = HTTPHelper.get_url_content(urls_process)
             report.add_item(content_url)
-                
-        for url in urls:
-            pool.run(process_url,url.text)
-        pool.wait_4_complete()
-        pool.shutdown()
+        
+        try:
+            while True:
+                if keyboard.is_pressed('esc'):
+                    break
+                   
+                for url in urls:
+                    pool.run(process_url,url.text)
+                pool.wait_4_complete()
+                report.print()
+                report.save()
+        finally:
+            print('Parando a execução!')
+            pool.shutdown()
         
         print("---------------------------")
         print("DONE - Processing requests.")
         print("---------------------------")
-        report.print()
-        report.save()
+        
+        
         
         
 
