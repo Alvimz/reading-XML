@@ -48,19 +48,13 @@ class TaskManager(object):
             content_url = HTTPHelper.get_url_content(urls_process)
             report.add_item(content_url)
         aps.start(report.write_log,1)
-        try:
-            while True:
-                if keyboard.is_pressed('esc'):
-                    break
-                   
-                for url in urls:
-                    pool.run(process_url,url.text)
-                pool.wait_4_complete()
-                report.print()
-                report.save()
-        finally:
-            pool.shutdown()
-            aps.stop()
+        for url in urls:
+            pool.run(process_url,url.text)
+        pool.wait_4_complete()
+        report.print()
+        report.save()
+        pool.shutdown()
+        aps.stop()
             
         
         print("---------------------------")
